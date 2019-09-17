@@ -15,10 +15,16 @@ test_sources = ['test/src/test.cpp']
 test_includes = [include_directories('test/include')] + [includes]
 
 
+dependencies = [
+    dependency('libbinary_format'),
+]
+
+
 libpex_loader = library(
     'pex_loader',
     sources,
     include_directories: includes,
+    dependencies: dependencies,
 )
 
 
@@ -27,6 +33,7 @@ catch2_test_executable = executable(
     test_sources,
     include_directories: test_includes,
     link_with: libpex_loader,
+    dependencies: dependencies,
 )
 
 test('catch2_test_suit', catch2_test_executable)

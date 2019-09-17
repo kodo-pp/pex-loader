@@ -1,5 +1,6 @@
-#include <pex_loader/data_reader.hpp>
 #include <pex_loader/pex_loader.hpp>
+
+#include <libbinary_format/data_reader.hpp>
 
 #include <cstdint>
 
@@ -9,7 +10,7 @@ namespace pex::loader::v0
 
 std::vector<Section> read_sections(const std::string_view& data)
 {
-    pex::util::DataReader r(data);
+    libbinary_format::DataReader r(data);
     auto section_count = r.read_uint<uint64_t>();
 
     std::vector<Section> sections;

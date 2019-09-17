@@ -1,5 +1,6 @@
 #include <pex_loader/pex_loader.hpp>
-#include <pex_loader/read_uint.hpp>
+
+#include <libbinary_format/read_uint.hpp>
 
 
 namespace pex::loader
@@ -42,7 +43,7 @@ EarlyHeaderInfo read_early_header(const std::string_view& data)
     }
 
     // Determine the format version
-    auto encoded_format_version = pex::util::read_uint<uint32_t>(data.substr(4));
+    auto encoded_format_version = libbinary_format::read_uint<uint32_t>(data.substr(4));
     auto format_major_version = uint16_t((encoded_format_version >> 16) & 0xFFFFu);
     auto format_minor_version = uint16_t(encoded_format_version & 0xFFFFu);
     info.format_version = EarlyHeaderInfo::FormatVersion{format_major_version, format_minor_version};
