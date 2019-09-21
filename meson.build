@@ -1,4 +1,4 @@
-project('pex-loader', 'cpp', version: '0.0.0', default_options: ['cpp_std=c++17'])
+project('pex-loader', 'cpp', version: '1.0.0', default_options: ['cpp_std=c++17'])
 
 
 sources = [
@@ -37,3 +37,12 @@ catch2_test_executable = executable(
 )
 
 test('catch2_test_suit', catch2_test_executable)
+
+pkg = import('pkgconfig')
+pkg.generate(
+    description: 'A library for loading and parsing PEX files. Written for pyke',
+    filebase: 'pex-loader',
+    libraries: libpex_loader,
+    name: 'pex-loader',
+    subdirs: 'include',
+)
